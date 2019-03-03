@@ -15,6 +15,7 @@ const express = require("express"),
     singlepost = require("./models/singlepost"),
     session = require("express-session"),
     cookieParser = require("cookie-parser"),
+    PORT = process.env.PORT || 5000,
     sess = {
         cookie: { maxAge: 3600000 },
         secret: "wgu_cms app 19920#0#",
@@ -368,4 +369,4 @@ function isAuthenticated(req, res, next) {
 };
 
 
-app.listen(3000, () => console.log("connected to 3000"));
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
