@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        ${header}
+        <title>Admin Area</title>
+
+    </head>
+    <body>
+        ${nav}
+        <main class="main" id="main">
+            <div class="card">
+                <a href="/new">Add New Post</a>
+            </div>
+            <div class="card">
+                <table>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                    </tr>
+                    ${posts.map(e=> `<tr>
+                        <td>${e.title} <div class="action f8">
+                                <a href="${e.postid}/edit">Edit</a>
+                                <a href="/delete/${e.postid}"
+                                    onclick="return confirm(
+                                    'Delete! Are you sure you?');">Delete</a>
+                                <a href="/${e.slug}">View</a>
+                            </div> </td>
+                        <td>${new
+                            Date(`${e.updated}`).toLocaleDateString()}</td>
+                    </tr>`).join("")}
+                </table>
+            </div>
+        </main>
+        ${footer}
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<header id="header">
+    <div class="ham"></div>
+    <a href="/">Home</a>
+    ${ user ? `<a href="/logout">Logout</a>
+    <a href="/admin">Admin</a>
+    `:
+    `<a
+        href="/login">Login</a>
+    <a href="/register">Signup</a>`}
+</header>
+<div class="fixed">
+    <nav class="nav flex">
+        <div class="ham">
+        </div>
+        <div class="f1 logo">
+            <a href="/">CMS</a>
+        </div>
+        <div class="search" id="searchicon">
+        </div>
+    </nav>
+</div>
+<div class="searchbox flex" id="searchbox">
+    <input type="search" name="text" id="text" class="f1">
+    <button  type="submit" class="submit" id="submit">Search</button>
+</div>

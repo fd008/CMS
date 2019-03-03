@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>New Post</title>
+        ${header}
+        <script src="/public/ckeditor/ckeditor.js"></script>
+    </head>
+    <body>
+        ${nav}
+        <main class="main" id="main" style="margin: 0; padding: 20px;">
+            <div class="editarea">
+                <form action="/new" method="POST">
+                    <input type="hidden" name="_csrf" value="${token}">
+                    <label>Title</label>
+                    <input type="text" name="title" id="title">
+                    <label>Tags (tag1,tag2,tag3...)</label>
+                    <input type="text" name="tags">
+                    <label>Slug</label>
+                    <input type="text" name="slug" id="slug">
+                    <label>Body</label>
+                    <textarea name="body" id="body" rows="10" cols="80">
+                    </textarea>
+                    <script>
+                        var editor = CKEDITOR.replace( 'body', {
+                            fontSize_defaultLabel: '16px',
+                            height: 500
+    
+                        });
+                        </script>
+                </form>
+            </div>
+        </main>
+        ${footer}
+    </body>
+</html>

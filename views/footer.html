@@ -1,0 +1,39 @@
+<footer class="tcen">
+    <p>© CMS 2019. All Rigths Reserved. </p>
+    ${flash.length > 0 ? `<div id="flash"><p>${flash}</p></div>`:``}
+    <script>
+            document.addEventListener("click", function (event) {
+                if (event.target.className == "ham") {
+                    document.getElementById("header").classList.toggle("w120");
+                    document.getElementById("main").classList.toggle("op");
+                    
+    
+                } else {
+                    document.getElementById("header").classList.remove("w120");
+                    document.getElementById("main").classList.remove("op");
+                    
+                }
+
+                if(event.target.className == "search"){
+                    document.getElementById("searchbox").classList.toggle("fl");
+                }
+
+                if(event.target.className == "submit"){
+                    var search = document.getElementById("text");
+                    if(search.value != ""){
+                        location.href = "/search/" + search.value;
+                    }else{
+                        search.style.borderColor = "red";
+                        search.classList.add("shake");
+                    }
+                }
+            });
+            document.addEventListener("DOMContentLoaded", function(event){ 
+                var flash = document.getElementById("flash");
+                flash.className="show";
+                setTimeout(function(){
+                    flash.className = flash.className.replace("show", "");
+                }, 3000);
+            });
+    </script>
+</footer>

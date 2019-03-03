@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        ${header}
+        <title>Search</title>
+    </head>
+    <body>
+        ${nav}
+        <main class="main" id="main">
+            <div class="card">
+                <p>Searched query : ${text}</p>
+            </div>
+            <div class="card tcen">Result</div>
+            <hr>
+            ${ans ? `
+            ${ans.map(e=> `<div class="card"><a href="/${e.slug}">${e.title}</a></div>`).join("")}
+            `: `<div class="card"><p>No Search Result Found!</p></div>` }
+        </main>
+        ${footer}
+    </body>
+</html>

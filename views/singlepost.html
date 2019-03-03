@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        ${header}
+        <title>${title}</title>
+    </head>
+    <body>
+        ${nav}
+        <main class="main flex wrap" id="main" data-postid="${id}">
+            <article class="f75">
+                <section class="intro">
+                    <h1>${title}</h1>
+                    <div class="sh">
+                        <a class="is-tw"
+                            href="https://twitter.com/share?url=/${slug}"
+                            rel="noopener nofollow" target="_blank"><svg
+                                width="21px" viewBox="0 0 335 276"
+                                fill="#3ba9ee">
+                                <path d="m302 70a195 195 0 0 1 -299 175 142 142
+                                    0 0 0 97 -30 70 70 0 0 1 -58 -47 70 70 0 0 0
+                                    31 -2 70 70 0 0 1 -57 -66 70 70 0 0 0 28 5
+                                    70 70 0 0 1 -18 -90 195 195 0 0 0 141 72 67
+                                    67 0 0 1 116 -62 117 117 0 0 0 43 -17 65 65
+                                    0 0 1 -31 38 117 117 0 0 0 39 -11 65 65 0 0
+                                    1 -32 35"></path>
+                            </svg></a>
+                        <a class="is-fb"
+                            href="https://www.facebook.com/sharer/sharer.php?u=/${slug}"
+                            rel="noopener nofollow" target="_blank"><svg
+                                fill="#3B5998" width="18px" height="21px"
+                                viewBox="0 0 24 24"><path d="M9
+                                    8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333
+                                    1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192
+                                    1.583-5.192 4.615v3.385z"></path></svg></a>
+                    </div>
+                    <div class="up">
+                        Updated: <span> ${ new Date(`${up}`).toDateString() }</span>
+                    </div>
+                </section>
+                ${body}
+            </article>
+            <aside class="f25">
+                <section>
+                    <header class="header tcen">Recent Posts</header>
+                    <div class="tcen p10 recent">
+                        ${recents ? `${recents.map(e=> `<a class=""
+                            href="${e.slug}">${e.title}</a>`).join("")}`:
+                        ''}
+                    </div>
+                </section>
+
+            </aside>
+        </main>
+        <section class="comments card">
+            <header class="tcen m10">Comments</header>
+            <div id="disqus_thread"></div>
+            <script>
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://cms-5.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a
+                    href="https://disqus.com/?ref_noscript">comments powered by
+                    Disqus.</a></noscript>
+        </section>
+        ${footer}
+    </body>
+</html>

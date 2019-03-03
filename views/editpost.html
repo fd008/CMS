@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        ${header}
+        <title>${title}</title>
+        <script src="/public/ckeditor/ckeditor.js"></script>
+        <style>
+    
+    </style>
+    </head>
+    <body>
+        ${nav}
+        <main class="main" style="margin: 0; padding: 20px;">
+            <div class="editarea">
+                <form action="/${res.postid}?_method=put" method="POST">
+                    <input type="hidden" name="_csrf" value="${token}">
+                    <input type="hidden" name="postid" value="${res.postid}">
+                    <label>Title</label>
+                    <input type="text" name="title" id="title"
+                        value="${res.title}">
+                    <label>Tags (tag1,tag2,tag3...)</label>
+                    <input type="text" name="tags"
+                        value='${JSON.parse(res.tags)}'>
+                    <label>Slug</label>
+                    <input type="text" name="slug" id="slug"
+                        value="${res.slug}">
+                    <label>Body</label>
+                    <textarea name="body" id="body" rows="10" cols="80">
+                        ${res.body}
+                    </textarea>
+                    <script>
+                    var editor = CKEDITOR.replace( 'body', {
+                        fontSize_defaultLabel: '16px',
+                        height: 500
+
+                    });
+                    </script>
+                </form>
+            </div>
+        </main>
+        ${footer}
+    </body>
+</html>
