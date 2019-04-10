@@ -27,7 +27,7 @@ con.query(`CREATE TABLE users (
     }
 );
 
-con.query(`insert into users(id, username, email, password, created ) values( 1 ,'wgu_user', 'fhasan4@wgu.edu', 'wguproject123', curdate())`, (err, res) => {
+con.query(`insert into users(id, username, email, password, created ) values( 1 ,'username here', 'user email here', 'user password here', curdate())`, (err, res) => {
     if (err) {
         console.log("user already exists!");
     } else {
