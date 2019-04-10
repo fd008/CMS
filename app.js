@@ -126,9 +126,6 @@ app.get("/new", isAuthenticated, (req, res) => {
 
 app.post("/new", isAuthenticated, (req, res) => {
 
-    const cats = req.body.tags.split(",").map(e => e.trim());
-    const labels = `'${JSON.stringify(cats)}'`;
-
     db.createPost(req.session.user.id, req.body.title, req.body.slug, req.body.body, labels) ? res.redirect("/") : res.redirect("/");
 
 });
@@ -152,6 +149,7 @@ app.get("/login", (req, res) => {
 app.post("/login", (req, res) => {
     const redirect_to = req.session.redirectTo || '/admin';
     conn.query(`select * from users where email = ${conn.escape(req.body.email)}`, (err, result) => {
+        console.log(result);
         if (err) {
             console.log(err);
         } else {
@@ -340,11 +338,8 @@ app.get("/:id/edit", isAuthenticated, (req, res) => {
 
 app.put("/:id", isAuthenticated, (req, res) => {
 
-    const cats = req.body.tags.split(",").map(e => e.trim());
-    const labels = `'${JSON.stringify(cats)}'`;
-
     //update post call
-    if (db.updatePost(req.params.id, req.body.title, req.body.slug, req.body.body, labels)) {
+    if (db.updatePost(req.params.id, req.body.title, req.body.slug, req.body.body)) {
         req.flash("info", "Successfully updated!");
     }
     res.redirect("/");

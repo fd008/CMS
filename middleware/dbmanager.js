@@ -5,7 +5,7 @@ module.exports = {
     createPost: (user_id, title, slug, body, tags) => {
 
         let done = false;
-        db.query(`insert into posts (user_id, title, slug, body, tags, published, post_created) values (${db.escape(user_id)}, ${db.escape(title)}, ${db.escape(slug)}, ${db.escape(body)}, ${tags}, true, curdate() )`, (err, result) => {
+        db.query(`insert into posts (user_id, title, slug, body, published, post_created) values (${db.escape(user_id)}, ${db.escape(title)}, ${db.escape(slug)}, ${db.escape(body)}, true, curdate() )`, (err, result) => {
             if (err) {
                 console.log(err);
                 return done;
@@ -18,10 +18,10 @@ module.exports = {
 
     },
 
-    updatePost: (id, title, slug, body, tags) => {
+    updatePost: (id, title, slug, body) => {
 
         let done = '';
-        db.query(`update posts set title = ${db.escape(title)}, slug = ${db.escape(slug)}, tags = ${tags}, body = ${db.escape(body)} where postid = ${db.escape(id)}`, (err, result) => {
+        db.query(`update posts set title = ${db.escape(title)}, slug = ${db.escape(slug)}, body = ${db.escape(body)} where postid = ${db.escape(id)}`, (err, result) => {
             if (result.affectedRows > 0) {
                 done = true;
                 console.log("post updated! " + result.affectedRows);
@@ -34,7 +34,7 @@ module.exports = {
             if (err) {
                 console.log(err);
             }
-            
+
         });
         return done;
     },
