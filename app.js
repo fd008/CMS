@@ -161,7 +161,7 @@ app.post("/login", (req, res) => {
                             email: result[0].email
                         };
                         req.session.user = user;
-                        req.flash("info", "Login successfully!");
+                        req.flash("info", "Logged In successfully!");
                         res.redirect(redirect_to);
                         req.session.redirectTo = "";
 
@@ -218,23 +218,32 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-
+    console.log(req.body);
     conn.query(`select * from users where email = ${conn.escape(req.body.email)};`, (err, result) => {
-        if (result) {
+        console.log(result.length);
+        if (result.length > 0) {
             req.flash("info", "Users exists! Please Login.");
             res.redirect("/login");
         } else {
             //hash the password
             bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-                conn.query(`insert into users (username, email, password, created) values (${req.body.name}, ${req.body.email}, ${hash}, curdate() )`, (err, result) => {
-                    if (result.affectedRows > 0) {
-                        console.log("successfully registered! Please Login!");
-                        res.redirect("/login");
-                    } else {
-                        console.log("users wasn't added to the DB");
-                        res.redirect("back");
-                    }
-                });
+                if (db.createUser(req.body.name, req.body.email, hash)) {
+                    req.flash("info", "Successfully created!");
+                    res.redirect("/login");
+                } else {
+                    req.flash("info", "User wasn't added! Please register again!");
+                    res.redirect("/login");
+                }
+
+                // conn.query(`insert into users (username, email, password, created) values (${req.body.name}, ${req.body.email}, ${hash}, curdate() )`, (err, result) => {
+                //     if (result.affectedRows > 0) {
+                //         console.log("successfully registered! Please Login!");
+                //         res.redirect("/login");
+                //     } else {
+                //         console.log("users wasn't added to the DB");
+                //         res.redirect("back");
+                //     }
+                // });
             });
         }
     });

@@ -58,17 +58,8 @@ module.exports = {
     },
 
     createUser: (username, email, password) => {
-        let done = false;
-
-        db.query(`insert into users( username, email, password, created ) values (${db.escape(username)}, ${db.escape(email)}, ${db.escape(password)}, curdate() );`, (err, result) => {
-            if (err) {
-                console.log(err);
-                return done;
-            } else {
-                done = true;
-                console.log("user added! " + result.insertId);
-                return done;
-            }
+        db.query(`insert into users( username, email, password, created_at ) values (${db.escape(username)}, ${db.escape(email)}, ${db.escape(password)}, curdate() );`, (err, result) => {
+            result.insertId > 0 ? true : false;
         });
 
     },
