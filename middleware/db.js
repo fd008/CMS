@@ -1,10 +1,10 @@
 const mysql = require("mysql");
 const con = mysql.createPool({
     connectionLimit: 10,
-    host: "199.175.55.241",
-    user: "fd",
-    password: "Amarpass19920#0#",
-    database: "wgu_cms"
+    host: "52.206.157.109",
+    user: "U054eD",
+    password: "53688419536",
+    database: "U054eD"
 }
 );
 
@@ -42,7 +42,6 @@ con.query(`CREATE TABLE posts  (
     title varchar(255) NOT NULL,
     slug varchar(255) NOT NULL,
     body text NOT NULL,
-    tags json not null,
     published tinyint(1) NOT NULL,
     post_created date not null,
     post_updated timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -59,7 +58,7 @@ con.query(`CREATE TABLE posts  (
     }
 );
 
-con.query(`insert into posts (postid, user_id, title, slug, body, tags, published, post_created) values (1, 1, 'First Post Title', 'first-post', 'This is the body of the CMS. Add text/images/videos here using the Wysiwyg text editor.', JSON_ARRAY("tech", "news"),  1, curdate() )`, (err, res) => {
+con.query(`insert into posts (postid, user_id, title, slug, body, published, post_created) values (1, 1, 'First Post Title', 'first-post', 'This is the body of the CMS. Add text/images/videos here using the Wysiwyg text editor.',  1, curdate() )`, (err, res) => {
     if (err) {
         console.log("post exists!");
     } else {
@@ -67,7 +66,7 @@ con.query(`insert into posts (postid, user_id, title, slug, body, tags, publishe
     }
 });
 
-con.query(`insert into posts (postid, user_id, title, slug, body, tags, published, post_created) values (2, 1, 'Second Post Title', 'second-post', 'This is the body of second post of the CMS. Add text/images/videos here using the Wysiwyg text editor.', JSON_ARRAY( "howto", "tutorial" ), 1, curdate() )`, (err, res) => {
+con.query(`insert into posts (postid, user_id, title, slug, body, tags, published, post_created) values (2, 1, 'Second Post Title', 'second-post', 'This is the body of second post of the CMS. Add text/images/videos here using the Wysiwyg text editor.', 1, curdate() )`, (err, res) => {
     if (err) {
         console.log("post exists!");
     } else {
