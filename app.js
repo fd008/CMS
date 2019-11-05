@@ -18,7 +18,7 @@ const express = require("express"),
     PORT = process.env.PORT || 5000,
     sess = {
         cookie: { maxAge: 3600000 },
-        secret: "wgu_cms app 19920#0#",
+        secret: process.env.secret,
         resave: false,
         saveUninitialized: false,
         httpOnly: true
